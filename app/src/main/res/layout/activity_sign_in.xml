@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login_1"
+    tools:context=".SignInActivity">
+
+    <LinearLayout
+        android:id="@+id/progress_view_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/signin_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/progress_text_signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Loading Please wait"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/signup_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/view3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="#FFEBEE">
+
+            <AutoCompleteTextView
+                android:id="@+id/full_name"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/ic_person_dark"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_person_dark"
+                android:hint="@string/prompt_name"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="#FFEBEE">
+
+            <AutoCompleteTextView
+                android:id="@+id/signup_email"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/ic_email_dark"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_email_dark"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/view4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="#FFEBEE">
+
+            <AutoCompleteTextView
+                android:id="@+id/phone"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/ic_phone_dark"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_phone_dark"
+                android:hint="@string/prompt_phone"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="#FFEBEE">
+
+            <AutoCompleteTextView
+                android:id="@+id/signup_password"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:layout_below="@+id/view"
+                android:drawableLeft="@drawable/ic_password_dark"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_password_dark"
+                android:hint="@string/prompt_password"
+                android:imeActionId="@+id/signup"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/email_sign_up_button"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:text="SIGN UP"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/social_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_form"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:elevation="8dp" />
+
+        <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/signin_button"
+            android:layout_width="248dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:elevation="8dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            facebook:com_facebook_login_text="Sign in with Facebook" />
+
+    </LinearLayout>
+
+</RelativeLayout>

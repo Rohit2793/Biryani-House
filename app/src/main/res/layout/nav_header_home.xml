@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/bg_nav_header"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/nav_header_vertical_spacing"
+    android:paddingLeft="@dimen/nav_header_vertical_spacing"
+    android:paddingRight="@dimen/nav_header_vertical_spacing"
+    android:paddingTop="@dimen/nav_header_vertical_spacing"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_img_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_menu_account_circle" />
+
+    <TextView
+        android:id="@+id/txt_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="Rohit Bhardwaj"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/txt_header_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="rohit@imerchantech.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_bh_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#0000"
+            android:drawableLeft="@drawable/bh_white_46"
+            android:text="Biryani House"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:background="@android:color/black" />
+
+        <Button
+            android:id="@+id/btn_cos_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#0000"
+            android:drawableLeft="@drawable/cafe_logo_46"
+            android:text="Cafe one six"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingEnd="20dp"
+    android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft"
+    android:paddingTop="15dp">
+
+    <EditText
+        android:id="@+id/edit_full_name_cartview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/editext_white_background"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_person_filled_light"
+        android:ems="10"
+        android:hint="Full Name"
+        android:textColor="@color/colorPrimaryDark"
+        android:textCursorDrawable="@drawable/edittext_cursor" />
+
+    <EditText
+        android:id="@+id/edit_email_cartview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_full_name_cartview"
+        android:background="@drawable/editext_white_background"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_email_light"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorPrimaryDark"
+        android:textCursorDrawable="@drawable/edittext_cursor" />
+
+    <EditText
+        android:id="@+id/edit_phone_cartview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_email_cartview"
+        android:background="@drawable/editext_white_background"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_phone_light"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textColor="@color/colorPrimaryDark"
+        android:textCursorDrawable="@drawable/edittext_cursor" />
+
+    <EditText
+        android:id="@+id/edit_delivery_location_cartview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_phone_cartview"
+        android:background="@drawable/editext_white_background"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_location_filled"
+        android:ems="10"
+        android:hint="Delivery Location"
+        android:inputType="textPostalAddress"
+        android:textColor="@color/colorPrimaryDark"
+        android:textCursorDrawable="@drawable/edittext_cursor" />
+
+</RelativeLayout>

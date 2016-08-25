@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:elevation="8dp"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/cv_inventory_single_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <ImageView
+            android:id="@+id/v_nv_inventory_view_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:clickable="false"
+            android:src="@drawable/veg_symbol_56dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/v_nv_inventory_view_logo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_menu_item_name_inventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Menu item Name"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_menu_item_cost_inventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="UGX 27000"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_add_to_cart_inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/inventory_button_shape"
+            android:gravity="center"
+            android:text="add"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/plus_minus_inventory_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_minus_inventory"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/minus_button_shape"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/colorPrimary"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txt_count_value_inventory"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_plus_inventory"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/plus_button_shape"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/colorPrimary"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
