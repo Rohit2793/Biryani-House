@@ -21,12 +21,19 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_inventory_list"
+    <ScrollView
+        android:id="@+id/scroll_cartview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar_layout_inventory"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_below="@+id/app_bar_layout_inventory">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_inventory_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/inventory_add_to_cart_bottom_layout"

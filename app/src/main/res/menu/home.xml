@@ -5,6 +5,6 @@
         android:id="@+id/action_navigation"
         android:icon="@drawable/ic_navigation_black"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Direction to Biryani House"
         app:showAsAction="ifRoom" />
 </menu>

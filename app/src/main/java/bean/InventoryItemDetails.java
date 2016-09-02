@@ -5,48 +5,95 @@ package bean;
  */
 public class InventoryItemDetails {
 
-    String menuItemName;
-    int menuItemVegNVLogo;
-    float menuItemAmount;
-    int parentId, itemId;
+    String itemName, itemCode, itemIsRevenue, parentId;
+    String itemPrice, itemPriceType, itemDefaultTaxRates;
+    String itemId, itemHidden, itemGroupId, itemModifiedTime;
 
-    public int getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
-    public int getItemId() {
+    public String getItemName() {
+        return itemName;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public String getItemIsRevenue() {
+        return itemIsRevenue;
+    }
+
+    public String getItemPrice() {
+        return itemPrice;
+    }
+
+    public String getItemPriceType() {
+        return itemPriceType;
+    }
+
+    public String getItemDefaultTaxRates() {
+        return itemDefaultTaxRates;
+    }
+
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public String getItemHidden() {
+        return itemHidden;
+    }
+
+    public String getItemGroupId() {
+        return itemGroupId;
+    }
+
+    public String getItemModifiedTime() {
+        return itemModifiedTime;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setItemIsRevenue(String itemIsRevenue) {
+        this.itemIsRevenue = itemIsRevenue;
+    }
+
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public void setItemPriceType(String itemPriceType) {
+        this.itemPriceType = itemPriceType;
+    }
+
+    public void setItemDefaultTaxRates(String itemDefaultTaxRates) {
+        this.itemDefaultTaxRates = itemDefaultTaxRates;
+    }
+
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
-    public String getMenuItemName() {
-        return menuItemName;
+    public void setItemHidden(String itemHidden) {
+        this.itemHidden = itemHidden;
     }
 
-    public void setMenuItemName(String menuItemName) {
-        this.menuItemName = menuItemName;
+    public void setItemGroupId(String itemGroupId) {
+        this.itemGroupId = itemGroupId;
     }
 
-    public int getMenuItemVegNVLogo() {
-        return menuItemVegNVLogo;
-    }
-
-    public void setMenuItemVegNVLogo(int menuItemVegNVLogo) {
-        this.menuItemVegNVLogo = menuItemVegNVLogo;
-    }
-
-    public float getMenuItemAmount() {
-        return menuItemAmount;
-    }
-
-    public void setMenuItemAmount(float menuItemAmount) {
-        this.menuItemAmount = menuItemAmount;
+    public void setItemModifiedTime(String itemModifiedTime) {
+        this.itemModifiedTime = itemModifiedTime;
     }
 }

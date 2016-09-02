@@ -22,31 +22,31 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/bh_cos_image_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--android:padding="15dp"-->
-        <!--android:weightSum="2">-->
+    <LinearLayout
+        android:id="@+id/bh_cos_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:weightSum="2">
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imageView_bh_main_home"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_weight="1"-->
-            <!--android:src="@drawable/bh_home" />-->
+        <ImageView
+            android:id="@+id/imageView_bh_main_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/bh_home_800_4001" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imageView_cos_main_home"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_weight="1"-->
-            <!--android:src="@drawable/cos_home" />-->
+        <ImageView
+            android:id="@+id/imageView_cos_main_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/cafe_one_six_800_480" />
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
     <com.github.rubensousa.floatingtoolbar.FloatingToolbar
         android:id="@+id/floatingToolbar"

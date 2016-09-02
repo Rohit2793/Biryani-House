@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -50,6 +51,7 @@ public class HomeActivity extends AppCompatActivity
     TextView txt_header_useremail;
     ImageView img_user_pic;
     Button btnBHheader, btnCOSHeader;
+    ImageView bhImg, cosImg;
     boolean isBHPressed = false, isCOSPressed = false;
 
     @Override
@@ -77,6 +79,8 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
+        bhImg = (ImageView) findViewById(R.id.imageView_bh_main_home);
+        cosImg = (ImageView) findViewById(R.id.imageView_cos_main_home);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -97,6 +101,8 @@ public class HomeActivity extends AppCompatActivity
 
         btnBHheader.setOnClickListener(this);
         btnCOSHeader.setOnClickListener(this);
+        bhImg.setOnClickListener(this);
+        cosImg.setOnClickListener(this);
 
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2) // default
                 .bitmapConfig(Bitmap.Config.ARGB_8888).displayer(new SimpleBitmapDisplayer()) // default
@@ -129,8 +135,23 @@ public class HomeActivity extends AppCompatActivity
                 isBHPressed = false;
                 break;
 
-        }
+            case R.id.imageView_bh_main_home:
+                Toast.makeText(HomeActivity.this, "Biryani house", Toast.LENGTH_SHORT).show();
+                Intent bh_intent = new Intent(HomeActivity.this, MenuActivity.class);
+                bh_intent.putExtra("whichMenu", "BH");
+                startActivity(bh_intent);
+                finish();
+                break;
 
+            case R.id.imageView_cos_main_home:
+                Toast.makeText(HomeActivity.this, "Cafe one six", Toast.LENGTH_SHORT).show();
+                Intent cos_intent = new Intent(HomeActivity.this, MenuActivity.class);
+                cos_intent.putExtra("whichMenu", "COS");
+                startActivity(cos_intent);
+                finish();
+                break;
+
+        }
 
     }
 
@@ -141,6 +162,8 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_menu) {
+
+            Toast.makeText(HomeActivity.this, "Please select Biryani House or Cafe one six first", Toast.LENGTH_LONG).show();
 
             if (isBHPressed) {
                 Toast.makeText(HomeActivity.this, "Biryani house", Toast.LENGTH_SHORT).show();

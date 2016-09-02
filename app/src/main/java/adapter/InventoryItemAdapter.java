@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import bean.InventoryItemDetails;
+import database.AddToCartDB;
 
 /**
  * Created by rohit on 7/27/16.
@@ -31,9 +32,10 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
     List<InventoryItemDetails> tempList = new ArrayList<>();
     HashMap<Integer, String> mapPosition = new HashMap<>();
     LayoutInflater inflater;
-    float totalCost;
-    float tempCost;
+    int totalCost;
+    String tempCost;
     int noOfItems = 0;
+    AddToCartDB addToCartDB;
 
     public InventoryItemAdapter(Context context, List<InventoryItemDetails> detailsList) {
         this.context = context;
@@ -43,6 +45,8 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
         for (int i = 0; i < detailsList.size(); i++) {
             mapPosition.put(i, "1");
         }
+        addToCartDB = new AddToCartDB(context);
+
     }
 
     @Override
@@ -58,8 +62,8 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
     public void onBindViewHolder(final InventoryItemAdapter.ViewHolder holder, final int position) {
 
         final InventoryItemDetails details = detailsList.get(position);
-        holder.txtItemName.setText(details.getMenuItemName());
-        holder.txtItemCost.setText("UGX " + details.getMenuItemAmount());
+        holder.txtItemName.setText(details.getItemName());
+        holder.txtItemCost.setText("UGX " + details.getItemPrice());
 
         holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +81,14 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
                         int countValue = Integer.parseInt(valu);
 
                         holder.txtCountItem.setText("" + countValue);
-                        detailsList.get(position).getMenuItemName();
+                        detailsList.get(position).getItemName();
                         noOfItems = noOfItems + 1;
-                        tempCost = details.getMenuItemAmount();
-                        totalCost = totalCost + tempCost;
+                        tempCost = details.getItemPrice();
+                        String totalValue = calculateOnAdd(tempCost, 1);
 
+                        totalCost = Integer.parseInt(totalValue);
+
+                        addToCartDB.insertToCartTable(details.getItemId(), details.getItemName(), details.getItemPrice(), countValue);
                         InventoryActivity.showBottomCartView(totalCost, noOfItems);
 
                         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +98,16 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
                                 String valu = mapPosition.get(pos);
                                 int countValue = Integer.parseInt(valu);
 
-                                float costOfitem = detailsList.get(pos).getMenuItemAmount();
+                                String costOfitem = detailsList.get(pos).getItemPrice();
                                 countValue = countValue + 1;
                                 int countVal = Integer.parseInt(holder.txtCountItem.getText().toString());
 
-                                double totalValue = calculateOnAdd(costOfitem, countVal);
+                                String totalValue = calculateOnAdd(costOfitem, 1);
                                 holder.txtCountItem.setText("" + countValue);
                                 mapPosition.put(pos, "" + countValue);
 
-                                InventoryActivity.showBottomCartView(totalValue, noOfItems);
+                                addToCartDB.updateItemToCartTable(details.getItemId(), details.getItemName(), details.getItemPrice(), countValue);
+                                InventoryActivity.showBottomCartView(Integer.parseInt(totalValue), noOfItems);
 
 
                             }
@@ -118,9 +126,9 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
 
                                     if (txtCount == 1) {
 
-                                        float costOfitem = detailsList.get(pos).getMenuItemAmount();
+                                        String costOfitem = detailsList.get(pos).getItemPrice();
                                         countValue = countValue - 1;
-                                        double totalValue = calculateOnSubtract(costOfitem, countValue);
+                                        String totalValue = calculateOnSubtract(costOfitem, 1);
 
                                         noOfItems = noOfItems - 1;
                                         if (countValue != 0) {
@@ -128,22 +136,25 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
                                             holder.txtCountItem.setText("" + countValue);
                                         }
 
-                                        InventoryActivity.showBottomCartView(totalValue, noOfItems);
+                                        addToCartDB.updateItemToCartTable(details.getItemId(), details.getItemName(), details.getItemPrice(), countValue);
+                                        InventoryActivity.showBottomCartView(Integer.parseInt(totalValue), noOfItems);
                                     }
 
+                                    addToCartDB.deleteItemFromCartTable(detailsList.get(position).getItemId());
                                     holder.btnAddToCart.setVisibility(View.VISIBLE);
                                     holder.plusMinusLayout.setVisibility(View.GONE);
                                     InventoryActivity.hideBottomCartView();
 
                                 } else {
 
-                                    float costOfitem = detailsList.get(pos).getMenuItemAmount();
+                                    String costOfitem = detailsList.get(pos).getItemPrice();
                                     countValue = countValue - 1;
-                                    double totalValue = calculateOnSubtract(costOfitem, countValue);
+                                    String totalValue = calculateOnSubtract(costOfitem, 1);
                                     mapPosition.put(pos, "" + countValue);
                                     holder.txtCountItem.setText("" + countValue);
-
-                                    InventoryActivity.showBottomCartView(totalValue, noOfItems);
+                                    noOfItems = noOfItems + 1;
+                                    addToCartDB.updateItemToCartTable(details.getItemId(), details.getItemName(), details.getItemPrice(), countValue);
+                                    InventoryActivity.showBottomCartView(Integer.parseInt(totalValue), noOfItems);
                                 }
 
                             }
@@ -158,22 +169,26 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
 
     }
 
-    float calculateOnAdd(float costItem, int quantity) {
+    String calculateOnAdd(String costItem, int quantity) {
 
-        float value = costItem * quantity;
+        int costInt = Integer.parseInt(costItem);
+
+        int value = costInt * quantity;
 
         totalCost = totalCost + value;
 
-        return totalCost;
+        return "" + totalCost;
     }
 
-    float calculateOnSubtract(float costItem, int quantity) {
+    String calculateOnSubtract(String costItem, int quantity) {
+
+        int costInt = Integer.parseInt(costItem);
 
         if (quantity != 0) {
-            float value = costItem * quantity;
+            int value = costInt * quantity;
             totalCost = totalCost - value;
         } else {
-            float value = totalCost - costItem;
+            int value = totalCost - costInt;
             if (value < 0) {
                 totalCost = 0;
             } else {
@@ -181,7 +196,8 @@ public class InventoryItemAdapter extends RecyclerView.Adapter<InventoryItemAdap
             }
 
         }
-        return totalCost;
+        return "" + totalCost;
+
     }
 
     @Override

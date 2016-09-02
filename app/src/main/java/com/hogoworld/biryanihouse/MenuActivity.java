@@ -44,7 +44,7 @@ public class MenuActivity extends AppCompatActivity {
     JSONArray jarray;
     String name;
     String image;
-    int id;
+    String id;
     int count = 0;
     int categoryId;
     View progressView;
@@ -91,7 +91,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 Toast.makeText(MenuActivity.this, "" + view.toString(), Toast.LENGTH_SHORT).show();
                 MenuHomeDetails details = detailsList.get(position);
-                int itemId = details.getId();
+                String itemId = details.getId();
                 String itemName = details.getMenuName();
 
                 Intent intent = new Intent(MenuActivity.this, InventoryActivity.class);
@@ -139,7 +139,7 @@ public class MenuActivity extends AppCompatActivity {
                         for (int i = 0; i < jarray.length(); i++) {
 
                             jobj = jarray.getJSONObject(i);
-                            id = jobj.getInt("id");
+                            id = jobj.getString("id");
                             name = jobj.getString("name");
                             image = jobj.getString("img");
                             MenuHomeDetails details = new MenuHomeDetails();

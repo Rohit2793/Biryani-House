@@ -2,6 +2,7 @@ package com.hogoworld.biryanihouse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -47,12 +48,14 @@ public class InventoryActivity extends AppCompatActivity {
     JSONObject jobj;
     JSONArray jarray;
     String name;
-    int parentId;
+    String parentId;
     int id;
-    int itemId;
+    String itemId;
     String intentName, menuCategory;
     int count = 0;
     String cost;
+    private static SharedPreferences preferences;
+    private static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class InventoryActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        itemId = intent.getIntExtra("itemId", 0);
+        itemId = intent.getStringExtra("itemId");
         intentName = intent.getStringExtra("itemName");
         menuCategory = intent.getStringExtra("whichMenu");
         getMenuData(menuCategory, itemId);
@@ -103,14 +106,16 @@ public class InventoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(InventoryActivity.this, CartViewActivity.class));
+                Intent intent = new Intent(InventoryActivity.this, CartViewActivity.class);
+                intent.putExtra("whichMenu", menuCategory);
+                startActivity(intent);
                 finish();
 
             }
         });
     }
 
-    private void getMenuData(final String menuCategory, final int itemId) {
+    private void getMenuData(final String menuCategory, final String itemId) {
 
         if (menuCategory.equalsIgnoreCase("BH")) {
             URL = UserVariables.KEY_BASE_URL + "bh_menu_item/" + itemId;
@@ -135,7 +140,7 @@ public class InventoryActivity extends AppCompatActivity {
                         for (int i = 0; i < jarray.length(); i++) {
 
                             jobj = jarray.getJSONObject(i);
-                            parentId = jobj.getInt("parent_id");
+                            parentId = jobj.getString("parent_id");
                             id = jobj.getInt("id");
                             name = jobj.getString("name");
                             cost = jobj.getString("cost");
@@ -144,13 +149,13 @@ public class InventoryActivity extends AppCompatActivity {
                             cost = separated[0] + separated[1];
 
                             Log.d("Inventory", "Cost after splitting : " + cost);
-                            Float finalCost = Float.parseFloat(cost);
+                            String finalCost = cost;
 
                             InventoryItemDetails itemDetails = new InventoryItemDetails();
                             itemDetails.setParentId(parentId);
                             itemDetails.setItemId(itemId);
-                            itemDetails.setMenuItemName(name);
-                            itemDetails.setMenuItemAmount(finalCost);
+                            itemDetails.setItemName(name);
+                            itemDetails.setItemPrice(finalCost);
                             listDetails.add(itemDetails);
 
                             if (!listDetails.isEmpty()) {
@@ -175,7 +180,7 @@ public class InventoryActivity extends AppCompatActivity {
 
     }
 
-    public static void showBottomCartView(double costItem, int items) {
+    public static void showBottomCartView(int costItem, int items) {
 
         bottomCartLayout.setVisibility(View.VISIBLE);
         DecimalFormat dformat = new DecimalFormat("0.00");
